@@ -1,11 +1,9 @@
 package seedu.bankwithus;
 
-import seedu.bankwithus.exceptions.AccountNotFoundException;
 import seedu.bankwithus.exceptions.CommandNotFoundException;
 import seedu.bankwithus.exceptions.CorruptedSaveFileException;
 import seedu.bankwithus.exceptions.InsufficientBalanceException;
 import seedu.bankwithus.exceptions.NegativeAmountException;
-import seedu.bankwithus.exceptions.SaveFileIsEmpty;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -17,7 +15,7 @@ public class Parser {
 
     /**
      * Instantiates a bwu Parser object
-     *
+     * 
      * @param bwu the main bankWithUs program
      */
     public Parser(BankWithUs bwu) {
@@ -28,7 +26,7 @@ public class Parser {
 
     /**
      * Instatiates a accountList Parser object
-     *
+     * 
      * @param accountList the accountList
      */
     public Parser(AccountList accountList) {
@@ -37,7 +35,6 @@ public class Parser {
 
     /**
      * Parses the user input into command and arguments.
-     *
      * @throws IOException
      */
     public void parseUserInput(String input) throws CommandNotFoundException, IOException {
@@ -68,12 +65,8 @@ public class Parser {
             }
             break;
         case "view-account":
-            try {
-                String accDetails = accountList.getAllAccountDetails();
-                ui.viewAccount(accDetails);
-            } catch (AccountNotFoundException e) {
-                ui.showNoAccount();
-            }
+            String accDetails = accountList.getAllAccountDetails();
+            ui.viewAccount(accDetails);
             break;
         case "withdraw":
             try {
@@ -91,9 +84,6 @@ public class Parser {
         case "help":
             ui.showHelp();
             break;
-        case "delete":
-            accountList.deleteAccount(args);
-            break;
         default:
             throw new CommandNotFoundException();
         }
@@ -101,16 +91,17 @@ public class Parser {
 
     /**
      * Parses the save file. Takes in the scanner to the save file,
-     * and splits the name and balance by ; character. Part of
+     * and splits the name and balance by ; character. Part of 
      * accountList parser, not bwu parser
-     *
+     * 
      * @param scanner
      * @throws CorruptedSaveFileException if any of the parameters are corrupted
      */
-    public void parseSavedFile(Scanner scanner) throws CorruptedSaveFileException, SaveFileIsEmpty {
+    public void parseSavedFile(Scanner scanner) throws CorruptedSaveFileException {
         String accountDetails = scanner.nextLine();
+        accountDetails.trim();
         if (accountDetails.isBlank()) {
-            throw new SaveFileIsEmpty();
+            throw new CorruptedSaveFileException();
         }
         try {
             String[] splitDetails = accountDetails.split(";");

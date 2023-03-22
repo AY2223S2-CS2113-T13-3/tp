@@ -6,7 +6,7 @@ public class Account {
 
     /**
      * Instantiates an account object
-     *
+     * 
      * @param name    initialise in the name of the account
      * @param balance initialise the balance of the account
      */

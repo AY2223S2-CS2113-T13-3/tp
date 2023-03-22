@@ -4,10 +4,10 @@ Welcome to:
 | $$__  $$                    | $$      | $$  /$ | $$|__/  | $$    | $$      | $$  | $$          
 | $$  \ $$  /$$$$$$  /$$$$$$$ | $$   /$$| $$ /$$$| $$ /$$ /$$$$$$  | $$$$$$$ | $$  | $$  /$$$$$$$
 | $$$$$$$  |____  $$| $$__  $$| $$  /$$/| $$/$$ $$ $$| $$|_  $$_/  | $$__  $$| $$  | $$ /$$_____/
-| $$__  $$  /$$$$$$$| $$  \ $$| $$$$$$/ | $$$$_  $$$$| $$  | $$    | $$  \ $$| $$  | $$|  $$$$$$
+| $$__  $$  /$$$$$$$| $$  \ $$| $$$$$$/ | $$$$_  $$$$| $$  | $$    | $$  \ $$| $$  | $$|  $$$$$$ 
 | $$  \ $$ /$$__  $$| $$  | $$| $$_  $$ | $$$/ \  $$$| $$  | $$ /$$| $$  | $$| $$  | $$ \____  $$
 | $$$$$$$/|  $$$$$$$| $$  | $$| $$ \  $$| $$/   \  $$| $$  |  $$$$/| $$  | $$|  $$$$$$/ /$$$$$$$/
-|_______/  \_______/|__/  |__/|__/  \__/|__/     \__/|__/   \___/  |__/  |__/ \______/ |_______/
+|_______/  \_______/|__/  |__/|__/  \__/|__/     \__/|__/   \___/  |__/  |__/ \______/ |_______/ 
 
 File not found, trying to create file.
 Savefile created successfully!
@@ -21,10 +21,6 @@ The input is not a valid number! Please try again.
 How much would you like to add as Balance?
 The input is not a valid number! Please try again.
 How much would you like to add as Balance?
-----------------------------
-Name: hihi
-Balance: $1000.0
-----------------------------
 ----------------------------
 help: displays the current menu
 view-account: shows account name and balance
@@ -52,8 +48,7 @@ Name: hihi
 Balance: $1100.21
 
 ----------------------------
-Account is not found, please re-enter the account name
-----------------------------
+Negative amount entered!
 You do not have sufficient Balance
 ----------------------------
 Name: hihi

@@ -1,9 +1,7 @@
 package seedu.bankwithus;
 
-import seedu.bankwithus.exceptions.AccountNotFoundException;
 import seedu.bankwithus.exceptions.InsufficientBalanceException;
 import seedu.bankwithus.exceptions.NegativeAmountException;
-import seedu.bankwithus.exceptions.SaveFileIsEmpty;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,7 +13,7 @@ public class AccountList {
     /**
      * Instantiates AccountList and creates a new account.
      * Called only when savefile is not found
-     *
+     * 
      * @param bwu the main bankWithUs program
      */
     public AccountList(BankWithUs bwu) {
@@ -27,10 +25,10 @@ public class AccountList {
     /**
      * Instantiates AccountList and either:
      * 1. Load the saved information in the save file into
-     * the account list
+     *    the account list
      * 2. Create a brand new account if the save file was
-     * empty
-     *
+     *    empty
+     * 
      * @param scanner the scanner containing the information in the save file
      * @param bwu     the main bankWithUs program
      */
@@ -41,18 +39,13 @@ public class AccountList {
         try {
             parser.parseSavedFile(scanner);
         } catch (Exception e) {
-            if (e.equals(new SaveFileIsEmpty())) {
-                ui.showEmptyFile();
-            } else {
-                ui.showCorruptedSaveFileError();
-            }
+            ui.showCorruptedSaveFileError();
             createNewAccount();
         }
     }
 
     /**
      * Returns the current account.
-     *
      * @return
      */
     public Account getCurrentAccount() {
@@ -63,7 +56,7 @@ public class AccountList {
      * Asks the user for the name and returns it in the form of
      * a string. Will keep looping so long as the user does not
      * give a valid name
-     *
+     * 
      * @return the userName String
      */
     private String askUserForName() {
@@ -85,7 +78,7 @@ public class AccountList {
      * Asks the user for their initial balance and returns it as a
      * float. Will keep looping so long as the user does not give
      * a valid balance.
-     *
+     * 
      * @return balance in the form of a float
      */
     private float askUserForBalance() {
@@ -110,13 +103,12 @@ public class AccountList {
     /**
      * Creates a new account and adds it to the AccountList.
      *
-     * @param name    Name of the new account to be added
-     * @param balance Balance of the new account to be added
+     * @param name      Name of the new account to be added
+     * @param balance   Balance of the new account to be added
      */
     public void addAccount(String name, float balance) {
         Account newAccount = new Account(name, balance);
         accounts.add(newAccount);
-        ui.showNewAddedAccount(newAccount);
     }
 
     /**
@@ -133,17 +125,13 @@ public class AccountList {
      *
      * @return returns all accounts details in String format
      */
-    public String getAllAccountDetails() throws AccountNotFoundException {
-        if (accounts.isEmpty()) {
-            throw new AccountNotFoundException();
-        } else {
-            StringBuilder temp = new StringBuilder();
-            for (Account acc : accounts) {
-                temp.append(acc.getAccountName()).append(";").append(acc.getAccountBalance());
-                temp.append("\n");
-            }
-            return temp.toString();
+    public String getAllAccountDetails() {
+        String temp = "";
+        for (Account acc : accounts) {
+            temp += acc.getAccountName() + ";" + acc.getAccountBalance();
+            temp += "\n";
         }
+        return temp;
     }
 
     public void showBal() {
@@ -174,20 +162,4 @@ public class AccountList {
             getCurrentAccount().subtractBalance(withdrawAmount);
         }
     }
-
-    public void deleteAccount(String name) {
-        for (Account acc : accounts) {
-            if (acc.getAccountName().contains(name)) {
-                accounts.remove(acc);
-                ui.showAccountDeleted(name);
-                return;
-            }
-        }
-        ui.showNoAccountFound();
-    }
-
-    public int getSize() {
-        return accounts.size();
-    }
-
 }

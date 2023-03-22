@@ -1,7 +1,5 @@
 package seedu.bankwithus;
 
-import seedu.bankwithus.exceptions.AccountNotFoundException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -52,12 +50,8 @@ public class Storage {
      */
     public void saveToFile(AccountList list) throws IOException {
         FileWriter fw = new FileWriter(saveFile);
-        try {
-            fw.write(list.getAllAccountDetails());
-            fw.close();
-        } catch (AccountNotFoundException e) {
-            fw.close();
-        }
+        fw.write(list.getAllAccountDetails());
+        fw.close();
     }
 
 }
