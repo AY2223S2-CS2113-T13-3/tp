@@ -14,6 +14,7 @@ import seedu.bankwithus.exceptions.UserInputAmountNotValid;
 import seedu.bankwithus.exceptions.UserInvalidInput;
 import seedu.bankwithus.parser.Parser;
 import seedu.bankwithus.ui.Ui;
+import seedu.bankwithus.user.Account;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -126,12 +127,18 @@ public class AccountList {
             if (balance < 0) {
                 throw new NegativeAmountException();
             }
+            if (getMainAccount().isMoreThanTwoDecimal(balance)){
+                throw new UserInputAmountNotValid();
+            }
             return balanceString;
         } catch (NumberFormatException e) {
             ui.showNumberFormatError();
             return askUserForBalance();
         } catch (NegativeAmountException e) {
             ui.showNegativeAmountError();
+            return askUserForBalance();
+        } catch (UserInputAmountNotValid e){
+            ui.showDecimalPlacesError();
             return askUserForBalance();
         }
     }
