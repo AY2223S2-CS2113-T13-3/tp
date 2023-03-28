@@ -235,7 +235,7 @@ public class AccountList {
             throw new NegativeAmountException();
         } else {
             try {
-            getMainAccount().addBalance(depositAmount);
+                getMainAccount().addBalance(depositAmount);
             } catch (UserInputAmountNotValid e){
                 ui.showDecimalPlacesError();
             }
