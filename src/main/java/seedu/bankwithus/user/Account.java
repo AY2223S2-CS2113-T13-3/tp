@@ -84,9 +84,14 @@ public class Account {
     }
 
     //@@author Sherlock-YH
-    public boolean isMoreThanTwoDecimal(float num){
-        DecimalFormat df = new DecimalFormat("#.##");
+    public boolean isMoreThanTwoDecimal(float num) {
+        DecimalFormat df = new DecimalFormat("#.########");
         String formatted = df.format(num);
-        return !formatted.matches("\\d+\\.\\d{2}");
+        int decimalIndex = formatted.indexOf('.');
+        if (decimalIndex < 0) {
+            return false;
+        }
+        int numDecimalPlaces = formatted.length() - decimalIndex - 1;
+        return numDecimalPlaces > 2;
     }
 }
