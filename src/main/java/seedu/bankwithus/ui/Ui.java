@@ -269,4 +269,10 @@ public class Ui {
         System.out.println("Please enter amount that only has two or less decimal places");
         printLine();
     }
+
+    //@@author Sherlock-YH
+    public void showInvalidInput() {
+        System.out.println("Your input is invalid");
+        printLine();
+    }
 }
