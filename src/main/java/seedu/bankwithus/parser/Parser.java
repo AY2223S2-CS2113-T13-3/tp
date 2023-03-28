@@ -1,5 +1,6 @@
 package seedu.bankwithus.parser;
 
+import seedu.bankwithus.exceptions.UserInvalidInput;
 import seedu.bankwithus.user.AccountList;
 import seedu.bankwithus.BankWithUs;
 import seedu.bankwithus.user.Transaction;
@@ -157,7 +158,11 @@ public class Parser {
             accountList.showGoal();
             break;
         case "delete":
-            accountList.deleteAccount(args);
+            try {
+                accountList.deleteAccount(args);
+            } catch (UserInvalidInput e) {
+                ui.showInvalidInput();
+            }
             break;
         case "view-transactions-all":
             try {

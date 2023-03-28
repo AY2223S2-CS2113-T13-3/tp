@@ -216,7 +216,7 @@ public class Ui {
         System.out.println("Balance: $" + acc.getAccountBalance());
         printLine();
     }
-
+    //@@author
     public void showWithdrawCancelled() {
         System.out.println("Withdrawal has been cancelled!");
     }
@@ -270,6 +270,18 @@ public class Ui {
         System.out.println("in you exceeding your withdrawal limit!");
     }
 
+    //@@author Sherlock-YH
+    public void showDecimalPlacesError() {
+        System.out.println("Please enter amount that only has two or less decimal places");
+        printLine();
+    }
+
+    //@@author Sherlock-YH
+    public void showInvalidInput() {
+        System.out.println("Your input is invalid");
+        printLine();
+    }
+    
     public void noTransactionsFoundError() {
         System.out.println("No transactions found!");
         printLine();

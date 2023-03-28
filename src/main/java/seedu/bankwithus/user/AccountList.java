@@ -10,6 +10,8 @@ import seedu.bankwithus.exceptions.InsufficientBalanceException;
 import seedu.bankwithus.exceptions.NegativeAmountException;
 import seedu.bankwithus.exceptions.NoAccountException;
 import seedu.bankwithus.exceptions.SaveFileIsEmptyException;
+import seedu.bankwithus.exceptions.UserInputAmountNotValid;
+import seedu.bankwithus.exceptions.UserInvalidInput;
 import seedu.bankwithus.parser.Parser;
 import seedu.bankwithus.ui.Ui;
 
@@ -124,12 +126,18 @@ public class AccountList {
             if (balance < 0) {
                 throw new NegativeAmountException();
             }
+            if (getMainAccount().isMoreThanTwoDecimal(balance)){
+                throw new UserInputAmountNotValid();
+            }
             return balanceString;
         } catch (NumberFormatException e) {
             ui.showNumberFormatError();
             return askUserForBalance();
         } catch (NegativeAmountException e) {
             ui.showNegativeAmountError();
+            return askUserForBalance();
+        } catch (UserInputAmountNotValid e){
+            ui.showDecimalPlacesError();
             return askUserForBalance();
         }
     }
@@ -233,14 +241,18 @@ public class AccountList {
         if (depositAmount < 0) {
             throw new NegativeAmountException();
         } else {
-            getMainAccount().addBalance(depositAmount);
+            try {
+                getMainAccount().addBalance(depositAmount);
+            } catch (UserInputAmountNotValid e){
+                ui.showDecimalPlacesError();
+            }
         }
     }
 
     //@@author vishnuvk47
     /**
      * checks if date is in the DD-MM-YYYY format
-     * @param date
+     * @param date the local date
      * @return true is date in correct format and false if not
      */
     public LocalDate handleDate(LocalDate date) {
@@ -266,13 +278,17 @@ public class AccountList {
             ui.failToMeetSaveGoal();
             handleProceed(withdrawAmount, currentBalance);
         } else {
-            getMainAccount( ).subtractBalance(currentBalance,withdrawAmount);
-            ui.showWithdrawMessage();
+            try{
+                getMainAccount( ).subtractBalance(currentBalance, withdrawAmount);
+                ui.showWithdrawMessage();
+            } catch (UserInputAmountNotValid e){
+                ui.showDecimalPlacesError();
+            }
         }
     }
-
+    //@@author Sherlock-YH
     public void findAccountToDelete(String name, Account acc) {
-        if (acc.getAccountName().contains(name)) {
+        if (acc.getAccountName().equals(name)) {
             accounts.remove(acc);
             ui.showAccountDeleted(name);
             if(accounts.size() < 1) {
@@ -282,7 +298,11 @@ public class AccountList {
     }
 
     //@@author Sherlock-YH
-    public void deleteAccount(String name) {
+    public void deleteAccount(String name) throws UserInvalidInput {
+        name = name.trim();
+        if (name.isBlank()){
+            throw new UserInvalidInput();
+        }
         for (Account acc : accounts) {
             findAccountToDelete(name, acc);
             return;
@@ -359,9 +379,13 @@ public class AccountList {
             yesOrNo = ui.getNextLine();
         }
         if(yesOrNo.equalsIgnoreCase("y")) {
-            getMainAccount( ).subtractBalance(currentBalance,withdrawAmount);
-            getMainAccount().saveGoal.amtToSave = 0;
-            ui.showWithdrawMessage();
+            try {
+                getMainAccount().subtractBalance(currentBalance, withdrawAmount);
+                getMainAccount().saveGoal.amtToSave = 0;
+                ui.showWithdrawMessage();
+            } catch (UserInputAmountNotValid e){
+                ui.showDecimalPlacesError();
+            }
 
         } else {
             ui.showWithdrawCancelled();

@@ -2,6 +2,7 @@ package seedu.bankwithus.user;
 
 import seedu.bankwithus.common.SaveGoal;
 import seedu.bankwithus.common.WithdrawalChecker;
+import seedu.bankwithus.exceptions.UserInputAmountNotValid;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -48,14 +49,20 @@ public class Account {
     }
 
     //@@author xiaoge26
-    public void addBalance(float balanceToBeAdded) {
+    public void addBalance(float balanceToBeAdded) throws UserInputAmountNotValid {
+        if (isMoreThanTwoDecimal(balanceToBeAdded)){
+            throw new UserInputAmountNotValid();
+        }
         DecimalFormat df = new DecimalFormat("#.##");
         String formatted = df.format(Float.parseFloat(balance) + balanceToBeAdded);
         this.balance = String.valueOf(formatted);
     }
 
     //@@author manushridiv
-    public void subtractBalance(float currentBalance, float withdrawal) {
+    public void subtractBalance(float currentBalance, float withdrawal) throws UserInputAmountNotValid {
+        if (isMoreThanTwoDecimal(currentBalance)){
+            throw new UserInputAmountNotValid();
+        }
         DecimalFormat df = new DecimalFormat("#.##");
         String formatted = df.format(currentBalance - withdrawal);
         this.balance = String.valueOf(formatted);
@@ -74,5 +81,17 @@ public class Account {
     }
     public SaveGoal getSaveGoal() {
         return this.saveGoal;
+    }
+
+    //@@author Sherlock-YH
+    public boolean isMoreThanTwoDecimal(float num) {
+        DecimalFormat df = new DecimalFormat("#.########");
+        String formatted = df.format(num);
+        int decimalIndex = formatted.indexOf('.');
+        if (decimalIndex < 0) {
+            return false;
+        }
+        int numDecimalPlaces = formatted.length() - decimalIndex - 1;
+        return numDecimalPlaces > 2;
     }
 }
