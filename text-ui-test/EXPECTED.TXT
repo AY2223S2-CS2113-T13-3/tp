@@ -114,7 +114,8 @@ Balance: $123678.1
 Name: hihi
 Balance: $1100.21
 ----------------------------
-Account Name: hihi Transaction Type: deposit Amount: 100.21 Date: 27/03/2023
-Account Name: sherlock Transaction Type: withdraw Amount: 100 Date: 27/03/2023
+Account Name: hihi Transaction Type: deposit Amount: 100.21 Date: 28/03/2023
+Account Name: sherlock Transaction Type: withdraw Amount: 100 Date: 28/03/2023
+----------------------------
 Not a valid command!
 Goodbye! Hope to see you again! :)

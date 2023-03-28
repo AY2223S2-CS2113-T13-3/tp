@@ -451,8 +451,8 @@ public class AccountList {
         LocalDate tdy = LocalDate.now();
         LocalDate tdyDate = handleDate(tdy);
         boolean exceedsSaveGoal = getMainAccount().getSaveGoal().amtToSave > expectedBal;
-        boolean deadlinePassed = getMainAccount().getSaveGoal().untilWhen.isAfter(tdyDate);
-        return (exceedsSaveGoal && !deadlinePassed);
+        boolean deadlineNotPassed = getMainAccount().getSaveGoal().untilWhen.isAfter(tdyDate);
+        return (exceedsSaveGoal && deadlineNotPassed);
     }
 
     //@@author tyuyang

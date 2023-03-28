@@ -3,6 +3,8 @@ package seedu.bankwithus.ui;
 import seedu.bankwithus.user.Account;
 import seedu.bankwithus.common.SaveGoal;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Ui {
@@ -230,7 +232,10 @@ public class Ui {
 
     public void showGoal(SaveGoal goal) {
         System.out.println("Min amount to save: $" + Float.toString(goal.amtToSave));
-        System.out.println("Deadline: "+goal.untilWhen);
+        LocalDate date = goal.untilWhen;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String untilwhen = date.format(formatter);
+        System.out.println("Deadline: "+untilwhen);
         printLine();
     }
 
@@ -264,6 +269,7 @@ public class Ui {
         System.out.println("Apologies! Your transaction did not go through as it will result");
         System.out.println("in you exceeding your withdrawal limit!");
     }
+
     //@@author Sherlock-YH
     public void showDecimalPlacesError() {
         System.out.println("Please enter amount that only has two or less decimal places");
@@ -273,6 +279,11 @@ public class Ui {
     //@@author Sherlock-YH
     public void showInvalidInput() {
         System.out.println("Your input is invalid");
+        printLine();
+    }
+    
+    public void noTransactionsFoundError() {
+        System.out.println("No transactions found!");
         printLine();
     }
 }

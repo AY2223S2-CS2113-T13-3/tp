@@ -1,6 +1,7 @@
 package seedu.bankwithus.user;
 
 import seedu.bankwithus.exceptions.CorruptedSaveFileException;
+import seedu.bankwithus.exceptions.NoTransactionsFoundException;
 import seedu.bankwithus.exceptions.SaveFileIsEmptyException;
 import seedu.bankwithus.parser.Parser;
 import seedu.bankwithus.ui.Ui;
@@ -35,6 +36,7 @@ public class TransactionList {
 
     public void createNewTransaction(String accountName, String type, String amount, LocalDate date) {
         Transaction transaction = new Transaction(accountName, type, amount, date);
+        assert transaction != null;
         transactions.add(transaction);
         size++;
     }
@@ -54,7 +56,10 @@ public class TransactionList {
         return size;
     }
 
-    public void printAllTransactions() {
+    public void printAllTransactions() throws NoTransactionsFoundException {
+        if (size == 0) {
+            throw new NoTransactionsFoundException();
+        }
         for (int i = 0; i < size; i++) {
             System.out.println(transactions.get(i).toString());
         }

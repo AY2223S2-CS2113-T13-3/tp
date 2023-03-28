@@ -2,28 +2,28 @@
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick start guide
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `BankWithUs.jar` from [here](https://github.com/AY2223S2-CS2113-T13-3/tp/releases).
+2. Download the latest `BankWithUs.jar` from [here](https://github.com/AY2223S2-CS2113-T13-3/tp/releases).
 
-2. Copy the file to the folder you want to use as the _home folder_ for your BankWithUs app.
+3. Copy the file to the folder you want to use as the _home folder_ for your BankWithUs app.
 
-3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar BankWithUs.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar BankWithUs.jar` command to run the application.<br>
 
-4. Follow the instruction as per the CLI and create your new account. e.g. typing **`help`** and pressing Enter will open the help option.<br>
+5. Follow the instruction as per the CLI and create your new account. e.g. typing **`help`** and pressing Enter will open the help option.<br>
    Some example commands you can try:
 
-    * `view-transactions-all` : Lists all transactions.
+       * `view-transactions-all` : Lists all transactions which has been committed in the app (a record)
 
-    * `withdraw 300` : withdraws $300 from teh current balance.
+       * `withdraw 300` : withdraws $300 from the current balance. (subsitute 300 for other numbers)
 
-    * `delete` : deletes the current account the user is on.
+       * `delete` : deletes the current account which the user has initially created.
 
-    * `deposit 100` : Deposits $100 into the users account.
+       * `deposit 100` : Deposits $100 into the users account. (subsitute 100 for other numbers)
 
-    * `exit` : Exits the app.
+       * `exit` : Exits the application
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -51,8 +51,6 @@
 Shows a list of all the commands available and what they attempt to do.
 
 Format: `help`
-
-
 ### Adding an account: `add-account`
 
 Initiates Adding a new account. When calling the command there is no requirement for any parameter.
@@ -64,6 +62,8 @@ CLI prompts: "Whats your name?" <br />
 your input: `NAME` <br />
 CLI prompts: "How much would you like to add as Balance?" <br />
 your input: `BALANCE` Note: Balance has to be a valid number. <br />
+
+
 
 
 Examples:
@@ -79,7 +79,7 @@ Steve
 
 ### List all transactions: `view-transactions-all`
 
-Shows a list of all the transactions processed by the **current** account.
+Shows a list of all the transactions processed by all the accounts of the user.
 
 Format: `view-transactions-all`
 
@@ -93,22 +93,25 @@ Account Name: jenson Transaction Type: withdraw Amount: 10 Date: 26/03/2023
 
 ### Depositing amount : `deposit`
 
-Deposits AMOUNT into the users account.
+Deposits AMOUNT into the *current account*.
 
 Format: `deposit AMOUNT`
 
 Examples:
 `deposit 100`
 
+
 ### switch current account: `switch-to`
 
-Switches current account to the new requested account, if it exists.
+Switches from the *current account* to the new requested account, if it exists.
 
 Format: `switch-to NAME`
 
 * The search is case-insensitive. e.g `jane` will match `Jane`
 * Only the name is searched.
 * Only full words will be matched e.g. `Ben` will not match `Benjamin`
+
+
 
 Examples:
 ```
@@ -118,7 +121,7 @@ switch-to jenson
 
 ### Add a savings Goal to the current account: `save`
 
-Adds a savings goal to the current account. <br />
+Adds a savings goal to the *current account*. <br />
 Will raise an alert when attempting to withdraw more than the savings goal, if attempt is before deadline
 
 Format: `save AMOUNT` >> will then prompt the user for the deadline.
@@ -200,14 +203,20 @@ Format: `exit`
 
 BankWithUs data is automatically stored when user exist the program and there is no manual inteference required.
 
-### Editing the data file
+### Editing the data files
 
 Editing the savefile data is highly not recommended, and users should attempt to only do so at their own discretion.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If you attempt to manipulate the saveFile and corrupted data is being parsed, you will be thrown exceptions.
-if this inhibits the program from running, please delete the exisiting savefile and run program again
+<div class="warning" style="color: red; background-color: #f2f2f2; padding: 10px;">
+<strong>Warning:</strong> <br>
+If you attempt to manipulate the data files (save.txt and transaction.txt) 
+and corrupted data is being parsed, you will be thrown exceptions.
+If this inhibits the program from running, 
+please delete the existing files and run program again. 
+Please keep in mind that this will result in irreversible data loss.
 </div>
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -12,6 +12,8 @@
     * [SaveGoal Component](#saveGoal-component)
     * [Storage Component](#storage-component)
     * [Withdrawal Limit Component](#withdraw limit checker-Component)
+    * [Transaction Component](#transaction-Component)
+    * [TransactionList Component](#transactionlist-component)
 * [Implementation](#implementation)
     * [Account related Feature](#Account-feature)
     * [saveGoal related Feature](#SaveGoal-feature)
@@ -95,10 +97,24 @@ Class: `Storage.java`
 
 The `Storage` component:
 
-* Handles storing data in sa save file and also loading data, if any, when program opens.
+* Handles storing data in the save files and also loading data, if any, when program opens.
 
 ### Withdraw-Limit-Checker-Component
 Class: `WithdrawalChecker.java`
+
+### Transaction-Component
+Class: `Transaction.java`
+
+The `Transaction` component:
+
+* Stores the details of a transaction
+
+### TransactionList-Component
+Class: `TransactionList.java`
+
+The `TransactionList` component:
+* Contains an ArrayList<Transaction> that contains the various different transactions that the user has.
+* Has methods to add and view transactions
 
 ---
 

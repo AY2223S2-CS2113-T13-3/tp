@@ -20,6 +20,7 @@ public class Transaction {
 
     @Override
     public String toString() {
+        assert date != null;
         return "Account Name: " + accountName
                 + " Transaction Type: " + type
                 + " Amount: " + amount
