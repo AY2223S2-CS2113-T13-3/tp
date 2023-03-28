@@ -14,7 +14,6 @@ import seedu.bankwithus.exceptions.UserInputAmountNotValid;
 import seedu.bankwithus.exceptions.UserInvalidInput;
 import seedu.bankwithus.parser.Parser;
 import seedu.bankwithus.ui.Ui;
-import seedu.bankwithus.user.Account;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
