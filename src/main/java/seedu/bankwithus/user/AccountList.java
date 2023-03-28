@@ -10,6 +10,7 @@ import seedu.bankwithus.exceptions.InsufficientBalanceException;
 import seedu.bankwithus.exceptions.NegativeAmountException;
 import seedu.bankwithus.exceptions.NoAccountException;
 import seedu.bankwithus.exceptions.SaveFileIsEmptyException;
+import seedu.bankwithus.exceptions.UserInputAmountNotValid;
 import seedu.bankwithus.parser.Parser;
 import seedu.bankwithus.ui.Ui;
 
@@ -233,7 +234,11 @@ public class AccountList {
         if (depositAmount < 0) {
             throw new NegativeAmountException();
         } else {
+            try {
             getMainAccount().addBalance(depositAmount);
+            } catch (UserInputAmountNotValid e){
+                ui.showDecimalPlacesError();
+            }
         }
     }
 
@@ -266,8 +271,12 @@ public class AccountList {
             ui.failToMeetSaveGoal();
             handleProceed(withdrawAmount, currentBalance);
         } else {
-            getMainAccount( ).subtractBalance(currentBalance,withdrawAmount);
-            ui.showWithdrawMessage();
+            try{
+                getMainAccount( ).subtractBalance(currentBalance,withdrawAmount);
+                ui.showWithdrawMessage();
+            } catch (UserInputAmountNotValid e){
+                ui.showDecimalPlacesError();
+            }
         }
     }
 
@@ -359,9 +368,13 @@ public class AccountList {
             yesOrNo = ui.getNextLine();
         }
         if(yesOrNo.equalsIgnoreCase("y")) {
-            getMainAccount( ).subtractBalance(currentBalance,withdrawAmount);
-            getMainAccount().saveGoal.amtToSave = 0;
-            ui.showWithdrawMessage();
+            try {
+                getMainAccount().subtractBalance(currentBalance, withdrawAmount);
+                getMainAccount().saveGoal.amtToSave = 0;
+                ui.showWithdrawMessage();
+            } catch (UserInputAmountNotValid e){
+                ui.showDecimalPlacesError();
+            }
 
         } else {
             ui.showWithdrawCancelled();
