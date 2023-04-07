@@ -45,7 +45,7 @@ public class Storage {
 
     //@@author
     /**
-     * Creates a new saveFile if file is not found. Also creates the data directory
+     * Creates a new saveFile if file is not found. Also creates the data directory.
      *
      * @throws IOException if something goes really wrong. Should almost never happen
      */
@@ -66,7 +66,7 @@ public class Storage {
 
     //@@author Sherlock-YH
     /**
-     * This method saves all account details to data/save.txt
+     * This method saves all account details to data/save.txt.
      *
      * @param list The AccountList that stores all accounts
      */
@@ -82,7 +82,7 @@ public class Storage {
 
     //@@author xiaoge26
     /**
-     * This method saves all transaction details to data/save.txt
+     * This method saves all transaction details to data/save.txt.
      *
      * @param transactionList The TransactionList that stores all transactions
      */

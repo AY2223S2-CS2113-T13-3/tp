@@ -21,39 +21,43 @@ The input is not a valid number! Please try again.
 How much would you like to add as Balance?
 Account created!
 Name: hihi
-Balance: $1000
+Balance: $1000.00
 ----------------------------
 File not found, trying to create file.
 Not a valid command!
 Current Account:
 Name: hihi
-Balance: $1000
+Balance: $1000.00
 ----------------------------
 Negative amount entered!
 The input is not a valid number! Please try again.
 Current Account:
 Name: hihi
-Balance: $1000
+Balance: $1000.00
 ----------------------------
 New deposit added!
 You have $1100.21 remaining!
 ----------------------------
+You did not enter any value. Please re-enter
+----------------------------
 Current Account:
 Name: hihi
 Balance: $1100.21
+----------------------------
+Account is not found, please rectify the name
 ----------------------------
 What's your name?
 How much would you like to add as Balance?
 Account created!
 Name: sherlock
-Balance: $123778.1
+Balance: $123778.10
 ----------------------------
 Current Account:
 Name: hihi
 Balance: $1100.21
 ----------------------------
 Name: sherlock
-Balance: $123778.1
+Balance: $123778.10
 ----------------------------
 You do not have sufficient Balance
 ----------------------------
@@ -62,22 +66,22 @@ Current Account switched
 Current Account is:
 ----------------------------
 Name: sherlock
-Balance: $123778.1
+Balance: $123778.10
 ----------------------------
 Current Account:
 Name: sherlock
-Balance: $123778.1
+Balance: $123778.10
 ----------------------------
 Name: hihi
 Balance: $1100.21
 ----------------------------
 The input is not a valid number! Please try again.
 Withdrawal successful!
-You have $123678.1 remaining!
+You have $123678.10 remaining!
 ----------------------------
 Current Account:
 Name: sherlock
-Balance: $123678.1
+Balance: $123678.10
 ----------------------------
 Name: hihi
 Balance: $1100.21
@@ -100,6 +104,12 @@ in you exceeding your withdrawal limit!
 Withdrawal limit is currently $100.
 You have withdrawn $100 this month.
 ----------------------------
+There are more than two decimal places!
+Please re-enter the command
+----------------------------
+New deposit added!
+You have $123678.20 remaining!
+----------------------------
 Withdrawal limit is currently $100.
 You have withdrawn $100 this month.
 ----------------------------
@@ -110,13 +120,14 @@ You have withdrawn $100 this month.
 ----------------------------
 Current Account:
 Name: sherlock
-Balance: $123678.1
+Balance: $123678.20
 ----------------------------
 Name: hihi
 Balance: $1100.21
 ----------------------------
-Account Name: hihi Transaction Type: deposit Amount: 100.21 Date: 30/03/2023
-Account Name: sherlock Transaction Type: withdraw Amount: 100 Date: 30/03/2023
+Account Name: hihi Transaction Type: deposit Amount: 100.21 Date: 07/04/2023
+Account Name: sherlock Transaction Type: withdraw Amount: 100 Date: 07/04/2023
+Account Name: sherlock Transaction Type: deposit Amount: 0.1 Date: 07/04/2023
 ----------------------------
 Not a valid command!
 Goodbye! Hope to see you again! :)

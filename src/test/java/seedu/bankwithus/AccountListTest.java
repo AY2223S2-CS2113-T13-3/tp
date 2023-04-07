@@ -1,8 +1,11 @@
 package seedu.bankwithus;
 
 import org.junit.jupiter.api.Test;
+import seedu.bankwithus.exceptions.MoreThanTwoDecimalPlace;
 import seedu.bankwithus.user.AccountList;
 import seedu.bankwithus.exceptions.NegativeAmountException;
+
+import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,6 +34,33 @@ class AccountListTest {
                 () -> accountList.depositMoney(amountString));
     }
 
+    //@@author Sherlock-YH
+    @Test
+    void depositMoney_moreThanTwoDecimalPlaces_expectException() {
+        String amountString = "1000.111";
+        String name = "SHhhh";
+        String balance = "1234";
+        AccountList accountList = new AccountList();
+        accountList.addAccount(name, balance, "");
+        assertThrows(MoreThanTwoDecimalPlace.class,
+                () -> accountList.depositMoney(amountString));
+
+    }
+
+    //@@author Sherlock-YH
+    @Test
+    void withdrawMoney_moreThanTwoDecimalPlaces_expectException() {
+        String amountString = "0.111";
+        String name = "SHhhh";
+        String balance = "12333";
+        AccountList accountList = new AccountList();
+        accountList.addAccount(name, balance, "");
+        assertThrows(MoreThanTwoDecimalPlace.class,
+                () -> accountList.withdrawMoney(amountString));
+
+    }
+
+    //@@author vishnuvk47
     @Test
     void withdrawNegativeAmount() {
         AccountList accountList = new AccountList();
@@ -55,7 +85,7 @@ class AccountListTest {
         AccountList testAccountList = new AccountList();
         testAccountList.addAccount("Jane", "1000", "");
         assertEquals("Jane", testAccountList.getMainAccount().getName());
-        assertEquals("1000", testAccountList.getMainAccount().getAccountBalance());
+        assertEquals(new BigDecimal("1000.00"), testAccountList.getMainAccount().getAccountBalance());
     }
 
     //@@author tyuyang

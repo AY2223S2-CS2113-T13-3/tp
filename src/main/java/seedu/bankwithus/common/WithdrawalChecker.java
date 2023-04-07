@@ -1,5 +1,6 @@
 package seedu.bankwithus.common;
 
+import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.text.DecimalFormat;
@@ -12,7 +13,7 @@ public class WithdrawalChecker {
     private Logger logger = Logger.getLogger("Foo");
 
     /**
-     * Instantiates withdrawalChecker without any amount withdrawn
+     * Instantiates withdrawalChecker without any amount withdrawn.
      */
     public WithdrawalChecker() {
         logger.log(Level.FINE, "Default WithdrawalChecker contructor called");
@@ -22,7 +23,7 @@ public class WithdrawalChecker {
 
     /**
      * Instantiates withdrawalChecker with amount withdrawn and 
-     * last known withdrawal date
+     * last known withdrawal date.
      * @param totalAmtWithdrawn amount withdrawn
      * @param lastWithdrawnDate last known withdrawal date
      */
@@ -46,7 +47,7 @@ public class WithdrawalChecker {
      * 
      * @param withdrawal the amount that was just withdrawn
      */
-    public void updateTotalAmtWithdrawn(float withdrawal) {
+    public void updateTotalAmtWithdrawn(BigDecimal withdrawal) {
         logger.log(Level.FINE, "updateTotalAmtWithdrawn in WithdrawalChecker called");
         LocalDate currentDate = LocalDate.now();
         DecimalFormat df = new DecimalFormat("#.##");
@@ -62,7 +63,7 @@ public class WithdrawalChecker {
         if (lastWithdrawnDate.getMonth() == currentDate.getMonth() && 
                 lastWithdrawnDate.getYear() == currentDate.getYear()) {
             logger.log(Level.FINE, "Previous withdrawal in the same month, adding to total");
-            String formatted = df.format(Float.parseFloat(totalAmtWithdrawn) + withdrawal);
+            String formatted = df.format(new BigDecimal(totalAmtWithdrawn).add(withdrawal));
             totalAmtWithdrawn = String.valueOf(formatted);
         } else {
             logger.log(Level.FINE, "Previous withdrawal in previous months, setting to new value");
@@ -83,7 +84,7 @@ public class WithdrawalChecker {
     }
 
     /**
-     * Checks if the amount withdrawn will exceed the withdrawal limit
+     * Checks if the amount withdrawn will exceed the withdrawal limit.
      * 
      * @param withdrawAmount the amount withdrawn
      * @return true if will exceed, false otherwise

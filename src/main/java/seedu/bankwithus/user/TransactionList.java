@@ -1,8 +1,8 @@
 package seedu.bankwithus.user;
 
-import seedu.bankwithus.exceptions.CorruptedSaveFileException;
+import seedu.bankwithus.exceptions.CorruptedTransactionFileException;
 import seedu.bankwithus.exceptions.NoTransactionsFoundException;
-import seedu.bankwithus.exceptions.SaveFileIsEmptyException;
+import seedu.bankwithus.exceptions.TransactionFileIsEmptyException;
 import seedu.bankwithus.parser.Parser;
 import seedu.bankwithus.ui.Ui;
 
@@ -20,6 +20,14 @@ public class TransactionList {
         this.size = 0;
     }
 
+    /**
+     * Creates a new instance of TransactionList. Initialises transactions.
+     * Should load data into transactions list too.
+     *
+     * @param scanner the scanner to read the transaction file
+     * @throws CorruptedTransactionFileException thrown when the transaction file is corrupted
+     * @throws TransactionFileIsEmptyException thrown when the transaction file is empty
+     */
     public TransactionList(Scanner scanner) {
         this.size = 0;
         transactions = new ArrayList<>();
@@ -27,14 +35,23 @@ public class TransactionList {
         Parser parser = new Parser(this);
         try {
             parser.parseTransactionFile(scanner);
-        } catch (CorruptedSaveFileException e) {
-            ui.showCorruptedSaveFileError();
-        } catch (SaveFileIsEmptyException e) {
+        } catch (CorruptedTransactionFileException e) {
+            ui.showCorruptedTransactionFileError();
+        } catch (TransactionFileIsEmptyException e) {
             //shows "No transactions found!" as this catch block
             ui.showNoTransactionsFoundMessage();
         }
     }
 
+
+    /**
+     * Creates a new transaction and adds it to the transaction list.
+     *
+     * @param accountName the name of the account
+     * @param type the type of transaction
+     * @param amount the amount of money involved in the transaction
+     * @param date the date of the transaction
+     */
     public void createNewTransaction(String accountName, String type, String amount, LocalDate date) {
         Transaction transaction = new Transaction(accountName, type, amount, date);
         assert transaction != null;

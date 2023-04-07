@@ -1,4 +1,4 @@
-### BankWithUs User Guide
+# BankWithUs User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -15,7 +15,7 @@
 5. Follow the instruction as per the CLI and create your new account. e.g. typing **`help`** and pressing Enter will open the help option.<br>
    Some example commands you can try:
 
-       * `view-transactions-all` : Lists all recorded transactions
+       * `view-transactions-all` : Lists all recorded transactions.
 
        * `withdraw 300` : Withdraws $300 from the current balance. (Subsitute 300 for other numbers)
 
@@ -23,7 +23,7 @@
 
        * `deposit 100` : Deposits $100 into the users account. (Subsitute 100 for other numbers)
 
-       * `exit` : Exits the application
+       * `exit` : Exits the application.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -41,8 +41,8 @@
 * Parameters MUST be in the specified order for the command to take appropriate effect.<br>
 
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `view-transactions-all`, `exit`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `view-transactions-all`, `exit`, `add-account`) will be ignored.<br>
+  e.g. If the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -87,7 +87,7 @@ your input: `BALANCE` Note: Balance has to be a valid number. <br />
 
 Examples:
 
-```agsl
+```
 add-account
 >>What is your name?
 Steve
@@ -104,7 +104,7 @@ Switches from the *current account* to the new requested account, if it exists.
 
 Format: `switch-to NAME`
 
-* The search is not case-sensitive. e.g `jane` will match `Jane`
+* The search is case-sensitive. e.g `jane` will NOT match `Jane`
 * Only the name is searched.
 * Only full words will be matched e.g. `Ben` will not match `Benjamin`
 
@@ -165,7 +165,7 @@ Deposits AMOUNT into the *current account*.
 Format: `deposit AMOUNT`
 
 Example:
-```agsl
+```
 deposit 100
 New deposit added!
 You have $190 remaining!
@@ -184,7 +184,7 @@ Withdraws AMOUNT from the users balance.
 Format: `withdraw AMOUNT`
 
 Example:
-```agsl
+```
 withdraw 500
 ```
 
@@ -203,18 +203,18 @@ Shows a list of all the transactions processed by all the accounts of the user.
 Format: `view-transactions-all`
 
 Example:
-```agsl
+```
 >>view-transactions-all
 Account Name: jenson Transaction Type: deposit Amount: 100 Date: 26/03/2023
 Account Name: jenson Transaction Type: withdraw Amount: 10 Date: 26/03/2023
 ```
 
-### Add a savings Goal to the current account: `save`
+### Add a savings Goal to the current account: `set-save-goal`
 
 Adds a savings goal to the *current account*. <br />
 Will raise an alert when attempting to withdraw more than the savings goal, if attempt is before deadline
 
-Format: `save AMOUNT` >> will then prompt the user for the deadline.
+Format: `set-save-goal AMOUNT` >> will then prompt the user for the deadline.
 
 * The amount to save has to be a number, -ve numbers allowed -- can be used to overwrite as no savings goal
 * Deadline entered has to be in dd-mm-YYYY format. No other format will be entertained by the program
@@ -309,12 +309,14 @@ Please keep in mind that this will result in irreversible data loss.
 
 ## Command summary
 
-| Action                      | Format, Examples     |
-|-----------------------------|----------------------|
-| **Add an Account**          | `add-account`        |
-| **swicth to a new account** | `switch-to ACC_NAME` |
-| **Delete an account**       | `delete`             |
-| **withdraw some amount**    | `withdraw AMOUNT`    |
-| **Add a savings goal**      | `save AMOUNT`        |
-| **Add a withdraw Limit**    | `set-wl`             |
-| **Help**                    | `help`               |
+| Action                        | Format, Examples        |
+|-------------------------------|-------------------------|
+| **Add an Account**            | `add-account`           |
+| **switch to a new account**   | `switch-to ACC_NAME`    |
+| **Delete an account**         | `delete`                |
+| **withdraw some amount**      | `withdraw AMOUNT`       |
+| **Add a savings goal**        | `set-save-goal`         |
+| **Show the save Goal**        | `show-saveGoal`         |
+| **Add a withdraw Limit**      | `set-wl`                |
+| **View all the transactions** | `view-transactions-all` |
+| **Help**                      | `help`                  |

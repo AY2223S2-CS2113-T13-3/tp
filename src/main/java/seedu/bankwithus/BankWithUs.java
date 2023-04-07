@@ -86,7 +86,7 @@ public class BankWithUs {
 
     //@@author Sherlock-YH
     /**
-     * Exit the programme, save the data and show farewell message
+     * Exit the programme, save the data and show farewell message.
      *
      * @throws IOException throw error if the data cannot be saved
      */
